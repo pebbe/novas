@@ -37,11 +37,9 @@ func main() {
 
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
 
-	sun := novas.NewPlanet(novas.SUN)
+	fmt.Printf("Distance from earth's center:   %.7f AU\n", novas.Sun.App(now).Dis)
 
-	fmt.Printf("Distance from earth's center:   %.7f AU\n", sun.App(now).Dis)
-
-	data := sun.Topo(now, geo, novas.REFR_NONE)
+	data := novas.Sun.Topo(now, geo, novas.REFR_NONE)
 
 	fmt.Printf("Distance from surface location: %.7f AU\n\n", data.Dis)
 
@@ -58,7 +56,7 @@ func main() {
 	t2 := novas.Time{Time: t1.Add(12 * time.Hour)}
 	for t2.Sub(t1.Time) > time.Second {
 		t0.Time = t1.Add(t2.Sub(t1.Time) / 2)
-		data = sun.Topo(t0, geo, novas.REFR_NONE)
+		data = novas.Sun.Topo(t0, geo, novas.REFR_NONE)
 		if data.Alt > sundip {
 			t2 = t0
 		} else {
@@ -69,11 +67,11 @@ func main() {
 
 	alt1 := data.Alt
 	t2.Time = t1.Add(12 * time.Hour)
-	data = sun.Topo(t2, geo, novas.REFR_NONE)
+	data = novas.Sun.Topo(t2, geo, novas.REFR_NONE)
 	alt2 :=  data.Alt
 	for t2.Sub(t1.Time) > time.Second {
 		t0.Time = t1.Add(t2.Sub(t1.Time) / 2)
-		data = sun.Topo(t0, geo, novas.REFR_NONE)
+		data = novas.Sun.Topo(t0, geo, novas.REFR_NONE)
 		if alt1 < alt2 {
 			t1 = t0
 			alt1 = data.Alt
@@ -87,7 +85,7 @@ func main() {
 	t2.Time = t1.Add(12 * time.Hour)
 	for t2.Sub(t1.Time) > time.Second {
 		t0.Time = t1.Add(t2.Sub(t1.Time) / 2)
-		data = sun.Topo(t0, geo, novas.REFR_NONE)
+		data = novas.Sun.Topo(t0, geo, novas.REFR_NONE)
 		if data.Alt < sundip {
 			t2 = t0
 		} else {

@@ -30,46 +30,45 @@ type PlanetTopoData struct {
 	Alt float64 // Altitude
 }
 
-type PlanetType struct {
-	id   int
-	name string
-}
-
 type RefractType int
 
 var (
-	MERCURY = PlanetType{1, "Mercury"}
-	VENUS   = PlanetType{2, "Venus"}
-	MARS    = PlanetType{4, "Mars"}
-	JUPITER = PlanetType{5, "Jupiter"}
-	SATURN  = PlanetType{6, "Saturn"}
-	URANUS  = PlanetType{7, "Uranus"}
-	NEPTUNE = PlanetType{8, "Neptune"}
-	PLUTO   = PlanetType{9, "Pluto"}
-	SUN     = PlanetType{10, "Sun"}
-	MOON    = PlanetType{11, "Moon"}
+	Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, Sun, Moon *Planet
 
 	REFR_NONE     = RefractType(0)
 	REFR_STANDARD = RefractType(1)
 	REFR_PLACE    = RefractType(2)
 )
 
-func NewPlanet(p PlanetType) *Planet {
+func init() {
+	Mercury = new_planet(1, "Mercury")
+	Venus = new_planet(2, "Venus")
+	Mars = new_planet(4, "Mars")
+	Jupiter = new_planet(5, "Jupiter")
+	Saturn = new_planet(6, "Saturn")
+	Uranus = new_planet(7, "Uranus")
+	Neptune = new_planet(8, "Neptune")
+	Pluto = new_planet(9, "Pluto")
+	Sun = new_planet(10, "Sun")
+	Moon = new_planet(11, "Moon")
+}
+
+func new_planet(id int, name string) *Planet {
 
 	planet := &Planet{}
 
 	cs1 := C.CString("DUMMY")
 	cs2 := C.CString("xxx")
-	cs3 := C.CString(p.name)
+	cs3 := C.CString(name)
 	defer C.free(unsafe.Pointer(cs1))
 	defer C.free(unsafe.Pointer(cs2))
 	defer C.free(unsafe.Pointer(cs3))
 
 	C.make_cat_entry(cs1, cs2, 0, 0, 0, 0, 0, 0, 0, &planet.dummy_star)
-	if err := C.make_object(0, C.short(p.id), cs3, &planet.dummy_star, &planet.planet); err != 0 {
-		log.Fatalf("Error %d from make_object (%s)\n", int(err), p.name)
+	if err := C.make_object(0, C.short(id), cs3, &planet.dummy_star, &planet.planet); err != 0 {
+		log.Fatalf("Error %d from make_object (%s)\n", int(err), name)
 	}
-	planet.name = p.name
+	planet.name = name
 	return planet
 }
 
