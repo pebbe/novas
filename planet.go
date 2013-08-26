@@ -34,26 +34,69 @@ type PlanetTopoData struct {
 
 type RefractType int
 
-var (
-	Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto, Sun, Moon *Planet
-
+const (
 	REFR_NONE     = RefractType(0)
 	REFR_STANDARD = RefractType(1)
 	REFR_PLACE    = RefractType(2)
 )
 
+var (
+	mercury, venus, mars, jupiter, saturn, uranus, neptune, pluto, sun, moon *Planet
+)
+
 func init() {
-	Mercury = new_planet(1, "Mercury")
-	Venus = new_planet(2, "Venus")
-	Mars = new_planet(4, "Mars")
-	Jupiter = new_planet(5, "Jupiter")
-	Saturn = new_planet(6, "Saturn")
-	Uranus = new_planet(7, "Uranus")
-	Neptune = new_planet(8, "Neptune")
-	Pluto = new_planet(9, "Pluto")
-	Sun = new_planet(10, "Sun")
-	Moon = new_planet(11, "Moon")
+	mercury = new_planet(1, "Mercury")
+	venus = new_planet(2, "Venus")
+	mars = new_planet(4, "Mars")
+	jupiter = new_planet(5, "Jupiter")
+	saturn = new_planet(6, "Saturn")
+	uranus = new_planet(7, "Uranus")
+	neptune = new_planet(8, "Neptune")
+	pluto = new_planet(9, "Pluto")
+	sun = new_planet(10, "Sun")
+	moon = new_planet(11, "Moon")
 }
+
+func Mercury() *Planet {
+	return mercury
+}
+
+func Venus() *Planet {
+	return venus
+}
+
+func Mars() *Planet {
+	return mars
+}
+
+func Jupiter() *Planet {
+	return jupiter
+}
+
+func Saturn() *Planet {
+	return saturn
+}
+
+func Uranus() *Planet {
+	return uranus
+}
+
+func Neptune() *Planet {
+	return neptune
+}
+
+func Pluto() *Planet {
+	return pluto
+}
+
+func Sun() *Planet {
+	return sun
+}
+
+func Moon() *Planet {
+	return moon
+}
+
 
 func new_planet(id int, name string) *Planet {
 

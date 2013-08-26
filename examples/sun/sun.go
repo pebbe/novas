@@ -27,9 +27,11 @@ func main() {
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
 	fmt.Println("\nLocation:", geo, "\n")
 
-	fmt.Printf("Distance from earth's center:   %.7f AU\n", novas.Sun.App(now).Dis)
+	sun := novas.Sun()
 
-	data := novas.Sun.Topo(now, geo, novas.REFR_NONE)
+	fmt.Printf("Distance from earth's center:   %.7f AU\n", sun.App(now).Dis)
+
+	data := sun.Topo(now, geo, novas.REFR_NONE)
 
 	fmt.Printf("Distance from surface location: %.7f AU\n\n", data.Dis)
 
@@ -39,7 +41,7 @@ func main() {
 
 	t0 := novas.Date(now.Year(), int(now.Month()), now.Day(), 0, 0, 0, 0, now.Location())
 
-	t1, topo, err := novas.Sun.Rise(t0, geo, sundip, time.Second, novas.REFR_NONE)
+	t1, topo, err := sun.Rise(t0, geo, sundip, time.Second, novas.REFR_NONE)
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -47,7 +49,7 @@ func main() {
 		t0 = t1
 	}
 
-	t1, topo, err = novas.Sun.High(t0, geo, time.Second, novas.REFR_NONE)
+	t1, topo, err = sun.High(t0, geo, time.Second, novas.REFR_NONE)
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -55,7 +57,7 @@ func main() {
 		t0 = t1
 	}
 
-	t1, topo, err = novas.Sun.Set(t0, geo, sundip, time.Second, novas.REFR_NONE)
+	t1, topo, err = sun.Set(t0, geo, sundip, time.Second, novas.REFR_NONE)
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -63,7 +65,7 @@ func main() {
 		t0 = t1
 	}
 
-	t1, topo, err = novas.Sun.Low(t0, geo, time.Second, novas.REFR_NONE)
+	t1, topo, err = sun.Low(t0, geo, time.Second, novas.REFR_NONE)
 	if err != nil {
 		fmt.Println(err)
 	} else {

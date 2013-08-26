@@ -27,9 +27,11 @@ func main() {
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
 	fmt.Println("\nLocation:", geo, "\n")
 
-	fmt.Printf("Distance from earth's center:   %.0f km\n", novas.Moon.App(now).Dis * novas.AU)
+	moon := novas.Moon()
 
-	data := novas.Moon.Topo(now, geo, novas.REFR_NONE)
+	fmt.Printf("Distance from earth's center:   %.0f km\n", moon.App(now).Dis * novas.AU)
+
+	data := moon.Topo(now, geo, novas.REFR_NONE)
     fmt.Printf("Distance from surface location: %.0f km\n\n", data.Dis * novas.AU)
 	fmt.Printf("Altitude: %7.3f°\nAzimuth:  %7.3f°\n\n", data.Alt, data.Az)
 

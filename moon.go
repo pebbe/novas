@@ -6,10 +6,10 @@ import (
 )
 
 func MoonDisc(t Time) float64 {
-	data := Sun.App(t)
+	data := sun.App(t)
 	elon1 := data.ELon / 180 * math.Pi
 	elat1 := data.ELat / 180 * math.Pi
-	data = Moon.App(t)
+	data = moon.App(t)
 	elon2 := data.ELon / 180 * math.Pi
 	elat2 := data.ELat / 180 * math.Pi
 
@@ -26,7 +26,7 @@ func MoonDisc(t Time) float64 {
 }
 
 func MoonPhase(t Time) float64 {
-	h := Moon.App(t).ELon - Sun.App(t).ELon
+	h := moon.App(t).ELon - sun.App(t).ELon
 	if h < 0 {
 		h += 360
 	}

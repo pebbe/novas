@@ -16,24 +16,24 @@ func main() {
 
 	novas.Init(jpleph, false)
 
-	t := novas.Now()
-	fmt.Println(t)
+	now := novas.Now()
+	fmt.Println(now)
 
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
 	fmt.Println("\nLocation:", geo)
 
 	fmt.Println("\n            Distance   Altitude   Azimuth")
 	for _, obj := range []*novas.Planet{
-		novas.Mercury,
-		novas.Venus,
-		novas.Mars,
-		novas.Jupiter,
-		novas.Saturn,
-		novas.Uranus,
-		novas.Neptune,
-		novas.Pluto,
+		novas.Mercury(),
+		novas.Venus(),
+		novas.Mars(),
+		novas.Jupiter(),
+		novas.Saturn(),
+		novas.Uranus(),
+		novas.Neptune(),
+		novas.Pluto(),
 	} {
-		data := obj.Topo(t, geo, novas.REFR_NONE)
+		data := obj.Topo(now, geo, novas.REFR_NONE)
 		fmt.Printf("%-8s%12.6f%11.2f%10.2f\n", obj.Name(), data.Dis, data.Alt, data.Az)
 	}
 }
