@@ -20,6 +20,7 @@ func main() {
 	fmt.Println(t)
 
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
+	fmt.Println("\nLocation:", geo)
 
 	fmt.Println("\n            Distance   Altitude   Azimuth")
 	for _, obj := range []*novas.Planet{
