@@ -15,9 +15,9 @@ func main() {
 
 	jpleph := "/my/opt/novas/share/JPLEPH"
 
-	longitude, latitude := 6.5670, 53.21853 // Groningen, The Netherlands
+	latitude, longitude := 53.21853, 6.5670 // Groningen, The Netherlands
 
-	// END USER SETTINGS
+	// END OF USER SETTINGS
 
 	novas.Init(jpleph, false)
 
