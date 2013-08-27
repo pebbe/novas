@@ -17,8 +17,5 @@ To install the package itself, run:
 
 To run programs using this package, you will also need a planetary
 ephemeris file, called JPLEPH. To create this file, download the files
-from this site:
-
-    ftp://ssd.jpl.nasa.gov/pub/eph/planets/fortran/
-
+from [this site](ftp://ssd.jpl.nasa.gov/pub/eph/planets/fortran/),
 and follow the instructions in userguide.txt
