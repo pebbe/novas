@@ -26,7 +26,7 @@ var (
 )
 
 func init() {
-	filename := jpleph.Filename()
+	filename := jpleph.JPLEPH()
 	cs := C.CString(filename)
 	defer C.free(unsafe.Pointer(cs))
 	var jd_beg, jd_end C.double

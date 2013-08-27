@@ -11,6 +11,10 @@ To install the package itself, run:
 
     go get github.com/pebbe/novas
 
-You also need a planetary ephemeris file. You can download it from here:
+You also need a planetary ephemeris file `JPLEPH`. You can download it from here:
 
 http://pkleiweg.home.xs4all.nl/jpleph/
+
+Put the file in this directory:
+
+    $GOPATH/src/github.com/pebbe/novas/jpleph/
