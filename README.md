@@ -13,4 +13,4 @@ To install the package itself, run:
 
 You also need a planetary ephemeris file. You can download it from here:
 
-    http://pkleiweg.home.xs4all.nl/jpleph/
+http://pkleiweg.home.xs4all.nl/jpleph/
