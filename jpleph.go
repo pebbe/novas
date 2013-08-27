@@ -5,6 +5,8 @@ import (
 	"strings"
 )
 
+// This function must be in a source file that doesn't include package "C"
+// or else it will give the wrong directory name.
 func jpleph() string {
 	_, filename, _, _ := runtime.Caller(0)
 	i := strings.LastIndex(filename, "/")
