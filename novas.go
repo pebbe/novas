@@ -45,19 +45,20 @@ func Init(filename string, verbose bool) (de_num int, jd_beg float64, jd_end flo
 	cs := C.CString(filename)
 	defer C.free(unsafe.Pointer(cs))
 
-	var jd_beg, jd_end C.double
-	var de_num C.short
+	var jd_beg_c, jd_end_c C.double
+	var de_num_c C.short
 
-	if err := C.ephem_open(cs, &jd_beg, &jd_end, &de_num); err != 0 {
+	if err := C.ephem_open(cs, &jd_beg_c, &jd_end_c, &de_num_c); err != 0 {
 		if err == 1 {
 			log.Fatalf("JPL ephemeris file \"%s\" not found. Download it from http://pkleiweg.home.xs4all.nl/jpleph/\n", filename)
 		} else {
 			log.Fatalf("Error reading JPL ephemeris file header \"%s\"\n", filename)
 		}
 	}
+	de_num, jd_beg, jd_end = int(de_num_c), float64(jd_beg_c), float64(jd_end_c)
 	if verbose {
-		log.Printf("JPL ephemeris DE%d open. Start JD = %10.2f  End JD = %10.2f\n", int(de_num), float64(jd_beg), float64(jd_end))
+		log.Printf("JPL ephemeris DE%d open. Start JD = %10.2f  End JD = %10.2f\n", de_num, jd_beg, jd_end)
 	}
 
-	return int(de_num), float64(jd_beg), float64(jd_end)
+	return
 }
