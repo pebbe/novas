@@ -11,10 +11,6 @@ To install the package itself, run:
 
     go get github.com/pebbe/novas
 
-To run programs using this package, you will also need a planetary
-ephemeris file, called `JPLEPH`. To create this file, download the files
-from this site:
+You also need a planetary ephemeris file. You can download it from here:
 
-ftp://ssd.jpl.nasa.gov/pub/eph/planets/fortran/
-
-and follow the instructions in `userguide.txt`
+    http://pkleiweg.home.xs4all.nl/jpleph/
