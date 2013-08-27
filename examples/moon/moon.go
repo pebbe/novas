@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-const (
-	sundip = float64(-0.8)
-)
-
 func main() {
 
 	jpleph := "/my/opt/novas/share/JPLEPH"
@@ -32,7 +28,7 @@ func main() {
 	fmt.Printf("Distance from earth's center:   %.0f km\n", moon.App(now).Dis * novas.AU)
 
 	data := moon.Topo(now, geo, novas.REFR_NONE)
-    fmt.Printf("Distance from surface location: %.0f km\n\n", data.Dis * novas.AU)
+	fmt.Printf("Distance from surface location: %.0f km\n\n", data.Dis * novas.AU)
 	fmt.Printf("Altitude: %7.3f°\nAzimuth:  %7.3f°\n\n", data.Alt, data.Az)
 
 	fmt.Printf("Phase of the moon: %.2f°, illuminated: %.0f%%\n\n", novas.MoonPhase(now), novas.MoonDisc(now))
