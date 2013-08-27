@@ -5,10 +5,6 @@ A [Go](http://golang.org/) interface to the [Naval Observatory Vector Astrometry
  * [package help](http://godoc.org/github.com/pebbe/novas)
  * [examples](https://github.com/pebbe/novas/tree/master/examples)
 
-## To do
-
- * Documentation
-
 ## Installation
 
 To install the package itself, run:

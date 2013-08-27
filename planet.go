@@ -16,6 +16,7 @@ type Planet struct {
 	name       string
 }
 
+// Information returned by function (*Planet) App(Time)
 type PlanetData struct {
 	RA   float64 // Right ascension
 	Dec  float64 // Declination
@@ -24,6 +25,7 @@ type PlanetData struct {
 	ELat float64 // Ecliptic latitude
 }
 
+// Information returned by function (*Planet) Topo(Time, *Place, RefractType)
 type PlanetTopoData struct {
 	Dis float64 // Distance in AU
 	Az  float64 // Azimuth
@@ -33,6 +35,7 @@ type PlanetTopoData struct {
 type RefractType int
 
 const (
+	// Types of refraction correction
 	REFR_NONE     = RefractType(0)
 	REFR_STANDARD = RefractType(1)
 	REFR_PLACE    = RefractType(2)
@@ -55,46 +58,55 @@ func init() {
 	moon = new_planet(11, "Moon")
 }
 
+// Create planet Mercury.
 func Mercury() *Planet {
 	return mercury
 }
 
+// Create planet Venus.
 func Venus() *Planet {
 	return venus
 }
 
+// Create planet Mars.
 func Mars() *Planet {
 	return mars
 }
 
+// Create planet Jupiter.
 func Jupiter() *Planet {
 	return jupiter
 }
 
+// Create planet Saturn.
 func Saturn() *Planet {
 	return saturn
 }
 
+// Create planet Uranus.
 func Uranus() *Planet {
 	return uranus
 }
 
+// Create planet Neptune.
 func Neptune() *Planet {
 	return neptune
 }
 
+// Create planet Pluto.
 func Pluto() *Planet {
 	return pluto
 }
 
+// Create solar body Sun.
 func Sun() *Planet {
 	return sun
 }
 
+// Create solar body Moon.
 func Moon() *Planet {
 	return moon
 }
-
 
 func new_planet(id int, name string) *Planet {
 
@@ -115,10 +127,12 @@ func new_planet(id int, name string) *Planet {
 	return planet
 }
 
+// Get the name of a solar system body.
 func (p *Planet) Name() string {
 	return p.name
 }
 
+// Compute the apparent place of a solar system body.
 func (p *Planet) App(t Time) PlanetData {
 
 	Init("JPLEPH", true)
@@ -143,6 +157,7 @@ func (p *Planet) App(t Time) PlanetData {
 	return data
 }
 
+// Compute the topocentric place of a solar system body.
 func (p *Planet) Topo(t Time, geo *Place, refr RefractType) PlanetTopoData {
 
 	Init("JPLEPH", true)

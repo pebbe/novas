@@ -13,7 +13,7 @@ import (
 )
 
 const (
-	AU = float64(149597870.700)
+	AU = float64(149597870.700) // Astronomical Units to kilometers
 )
 
 var (
@@ -21,6 +21,12 @@ var (
 	Accuracy  = 0 // 0 = full acccuray; 1 = reduced acccuray
 )
 
+/*
+Initialise the package, pointing to the location of the ephemeris file, usually called JPLEPH.
+
+If not called explicitly, this function will be called automaticly at the time the ephemeris file is first needed.
+It will then search for JPLEPH in the current directory.
+*/
 func Init(filename string, verbose bool) {
 
 	if init_done {

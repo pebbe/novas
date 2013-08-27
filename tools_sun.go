@@ -2,6 +2,7 @@ package novas
 
 import "time"
 
+// Computes the time of the start of spring in the given year.
 func Spring(year int, precision time.Duration) Time {
 	t1 := Date(year, 3, 15, 0, 0, 0, 0, time.Local)
 	t2 := Time{Time: t1.AddDate(0, 0, 15)}
@@ -17,6 +18,7 @@ func Spring(year int, precision time.Duration) Time {
 	return tt
 }
 
+// Computes the time of the start of summer in the given year.
 func Summer(year int, precision time.Duration) Time {
 	t1 := Date(year, 6, 15, 0, 0, 0, 0, time.Local)
 	t2 := Time{Time: t1.AddDate(0, 0, 15)}
@@ -37,6 +39,7 @@ func Summer(year int, precision time.Duration) Time {
 	return tt
 }
 
+// Computes the time of the start of autumn in the given year.
 func Autumn(year int, precision time.Duration) Time {
 	t1 := Date(year, 9, 15, 0, 0, 0, 0, time.Local)
 	t2 := Time{Time: t1.AddDate(0, 0, 15)}
@@ -52,6 +55,7 @@ func Autumn(year int, precision time.Duration) Time {
 	return tt
 }
 
+// Computes the time of the start of winter in the given year.
 func Winter(year int, precision time.Duration) Time {
 	t1 := Date(year, 12, 15, 0, 0, 0, 0, time.Local)
 	t2 := Time{Time: t1.AddDate(0, 0, 15)}

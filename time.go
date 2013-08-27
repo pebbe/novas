@@ -9,6 +9,13 @@ import (
 	"time"
 )
 
+/*
+Type Time holds time in a format needed by the C Novas functions.
+
+Type Time is a struct that includes a time.Time object.
+All methods of time.Time are available.
+To set the time of an object Time t through assignement, use: t.Time =
+*/
 type Time struct {
 	time.Time
 	current                                time.Time
@@ -20,10 +27,20 @@ var (
 	UT1_UTC   = float64(-0.387845)
 )
 
+// Now returns the current local time.
 func Now() Time {
 	return Time{Time: time.Now()}
 }
 
+/*
+Date returns the Time corresponding to
+
+    yyyy-mm-dd hh:mm:ss + nsec nanoseconds
+
+in the appropriate zone for that time in the given location.
+
+See godoc on time.Date for details.
+*/
 func Date(year, month, day, hour, min, sec, nsec int, loc *time.Location) Time {
 	return Time{Time: time.Date(year, time.Month(month), day, hour, min, sec, nsec, loc)}
 }

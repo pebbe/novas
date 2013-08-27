@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// Return the percentage of the Moon disc that is illuminated.
 func MoonDisc(t Time) float64 {
 	data := sun.App(t)
 	elon1 := data.ELon / 180 * math.Pi
@@ -25,6 +26,7 @@ func MoonDisc(t Time) float64 {
 	return 100 * 0.5 * (1 - h)
 }
 
+// Return the current phase of the moon as an angle.
 func MoonPhase(t Time) float64 {
 	h := moon.App(t).ELon - sun.App(t).ELon
 	if h < 0 {
@@ -33,6 +35,8 @@ func MoonPhase(t Time) float64 {
 	return h
 }
 
+// Return the time of the next lunar phase, expressed as an angle.
+// 0 = new moon, 90 = first quarter, 180 = full moon, 270 = last quater.
 func MoonPhaseNext(t Time, phase float64, precision time.Duration) Time {
 	for phase < 0 {
 		phase += 360

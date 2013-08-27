@@ -14,6 +14,7 @@ type Place struct {
 	lat, long, h, t, p float64
 }
 
+// Defines an observer location, somewhere on earth.
 func NewPlace(latitude, longitude, height, temperature, pressure float64) *Place {
 	p := Place{lat: latitude, long: longitude, h:height, t: temperature, p: pressure}
 	C.make_on_surface(
