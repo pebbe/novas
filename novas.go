@@ -26,14 +26,21 @@ Initialise the package, pointing to the location of the ephemeris file, usually 
 
 If not called explicitly, this function will be called automaticly at the time the ephemeris file is first needed.
 It will then search for JPLEPH in the current directory.
+
+You can download the file from: http://pkleiweg.home.xs4all.nl/jpleph/
 */
-func Init(filename string, verbose bool) {
+func Init(filename string, verbose bool) (de_num int, jd_beg float64, jd_end float64) {
 
 	if init_done {
 		return
 	}
 
 	init_done = true
+
+	if filename == "" {
+		filename = "JPLEPH"
+	}
+
 
 	cs := C.CString(filename)
 	defer C.free(unsafe.Pointer(cs))
@@ -43,7 +50,7 @@ func Init(filename string, verbose bool) {
 
 	if err := C.ephem_open(cs, &jd_beg, &jd_end, &de_num); err != 0 {
 		if err == 1 {
-			log.Fatalf("JPL ephemeris file \"%s\" not found\n", filename)
+			log.Fatalf("JPL ephemeris file \"%s\" not found. Download it from http://pkleiweg.home.xs4all.nl/jpleph/\n", filename)
 		} else {
 			log.Fatalf("Error reading JPL ephemeris file header \"%s\"\n", filename)
 		}
@@ -51,4 +58,6 @@ func Init(filename string, verbose bool) {
 	if verbose {
 		log.Printf("JPL ephemeris DE%d open. Start JD = %10.2f  End JD = %10.2f\n", int(de_num), float64(jd_beg), float64(jd_end))
 	}
+
+	return int(de_num), float64(jd_beg), float64(jd_end)
 }
