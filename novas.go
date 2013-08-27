@@ -1,9 +1,9 @@
 package novas
 
 /*
-#cgo LDFLAGS: -lm -lnovas
-#include <eph_manager.h>
-#include <novas.h>
+#cgo LDFLAGS: -lm
+#include "eph_manager.h"
+#include "novas.h"
 */
 import "C"
 
