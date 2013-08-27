@@ -7,5 +7,4 @@ A [Go](http://golang.org/) interface to the [Naval Observatory Vector Astrometry
 ## To do
 
  * Documentation
- * Install manual for NOVAS library and headers
  * Install manual for JPLEPH
