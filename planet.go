@@ -135,8 +135,6 @@ func (p *Planet) Name() string {
 // Compute the apparent place of a solar system body.
 func (p *Planet) App(t Time) PlanetData {
 
-	Init("", true)
-
 	t.update()
 
 	data := PlanetData{}
@@ -159,8 +157,6 @@ func (p *Planet) App(t Time) PlanetData {
 
 // Compute the topocentric place of a solar system body.
 func (p *Planet) Topo(t Time, geo *Place, refr RefractType) PlanetTopoData {
-
-	Init("", true)
 
 	t.update()
 
