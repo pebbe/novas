@@ -8,8 +8,6 @@ package novas
 import "C"
 
 import (
-	"github.com/pebbe/novas/jpleph"
-
 	"fmt"
 	"log"
 	"unsafe"
@@ -26,7 +24,7 @@ var (
 )
 
 func init() {
-	filename := jpleph.JPLEPH()
+	filename := jpleph()
 	cs := C.CString(filename)
 	defer C.free(unsafe.Pointer(cs))
 	var jd_beg, jd_end C.double
