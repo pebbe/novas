@@ -1,13 +1,15 @@
-package novas
+package novas_test
 
 import (
+	"github.com/pebbe/novas"
+
 	"fmt"
 	"time"
 )
 
 func ExampleApp_Planet() {
-	t := Date(2012, 12, 13, 12, 0, 0, 0, time.UTC)
-	sun := Sun()
+	t := novas.Date(2012, 12, 13, 12, 0, 0, 0, time.UTC)
+	sun := novas.Sun()
 	data := sun.App(t)
 	fmt.Printf("Right ascension:    %10.6f\n", data.RA)
 	fmt.Printf("Declination:        %10.6f\n", data.Dec)
@@ -23,10 +25,10 @@ func ExampleApp_Planet() {
 }
 
 func ExampleTopo_Planet() {
-	t := Date(2012, 12, 13, 12, 0, 0, 0, time.UTC)
-	sun := Sun()
-	place := NewPlace(53.21853, 6.5670, 0, 18, 1010)
-	data := sun.Topo(t, place, REFR_NONE)
+	t := novas.Date(2012, 12, 13, 12, 0, 0, 0, time.UTC)
+	sun := novas.Sun()
+	place := novas.NewPlace(53.21853, 6.5670, 0, 18, 1010)
+	data := sun.Topo(t, place, novas.REFR_NONE)
 	fmt.Printf("Distance in AU: %10.6f\n", data.Dis)
 	fmt.Printf("Altitude:       %10.6f\n", data.Alt)
 	fmt.Printf("Azimuth:        %10.6f\n", data.Az)

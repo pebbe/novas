@@ -1,13 +1,15 @@
-package novas
+package novas_test
 
 import (
+	"github.com/pebbe/novas"
+
 	"fmt"
 	"time"
 )
 
 func ExampleApp_Star() {
-	t := Date(2008, 4, 24, 10, 36, 18, 0, time.UTC)
-	star := NewStar("GMB 1830", "FK6", 1307, 11.88299133, 37.71867646, 4003.27, -5815.07, 109.21, -98.8)
+	t := novas.Date(2008, 4, 24, 10, 36, 18, 0, time.UTC)
+	star := novas.NewStar("GMB 1830", "FK6", 1307, 11.88299133, 37.71867646, 4003.27, -5815.07, 109.21, -98.8)
 	data := star.App(t)
 	fmt.Printf("Right ascension:    %10.6f\n", data.RA)
 	fmt.Printf("Declination:        %10.6f\n", data.Dec)
@@ -23,10 +25,10 @@ func ExampleApp_Star() {
 }
 
 func ExampleTopo_Star() {
-	t := Date(2008, 4, 24, 10, 36, 18, 0, time.UTC)
-	star := NewStar("GMB 1830", "FK6", 1307, 11.88299133, 37.71867646, 4003.27, -5815.07, 109.21, -98.8)
-	place := NewPlace(42.0, -70, 0, 18, 1010)
-	data := star.Topo(t, place, REFR_NONE)
+	t := novas.Date(2008, 4, 24, 10, 36, 18, 0, time.UTC)
+	star := novas.NewStar("GMB 1830", "FK6", 1307, 11.88299133, 37.71867646, 4003.27, -5815.07, 109.21, -98.8)
+	place := novas.NewPlace(42.0, -70, 0, 18, 1010)
+	data := star.Topo(t, place, novas.REFR_NONE)
 	fmt.Printf("Distance: %10.6f\n", data.Dis)
 	fmt.Printf("Altitude: %10.6f\n", data.Alt)
 	fmt.Printf("Azimuth:  %10.6f\n", data.Az)
