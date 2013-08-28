@@ -9,6 +9,18 @@ import (
 	"unsafe"
 )
 
+/*
+Create a star
+    starname:       name of celestial object
+    catalog:        catalog designator (e.g., HIP)
+    starnumber:     integer identifier assigned to object
+    ra:             ICRS right ascension (hours)
+    dec:            ICRS declination (degrees)
+    promora:        ICRS proper motion in right ascension (milliarcseconds/year)
+    promodec:       ICRS proper motion in declination (milliarcseconds/year)
+    parallax:       parallax (milliarcseconds)
+    radialvelocity: radial velocity (km/s)
+*/
 func NewStar(starname, catalog string, starnumber int64, ra, dec, promora, promodec, parallax, radialvelocity float64) *Body {
 
 	if len(starname) >= int(C.SIZE_OF_OBJ_NAME) {
