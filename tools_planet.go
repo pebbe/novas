@@ -90,8 +90,8 @@ func (p *Planet) High(t Time, geo *Place, precision time.Duration, refr RefractT
 	found := false
 	for i := 0; i < 48; i++ {
 		t3.Time = t2.Add(30 * time.Minute)
-		alt3 := p.Topo(t3, geo, refr).Alt
-		if alt3 < alt2 && alt2 > alt1 {
+		alt3 = p.Topo(t3, geo, refr).Alt
+		if i > 1 && alt2 > alt3 && alt2 > alt1 {
 			found = true
 			break
 		}
@@ -132,8 +132,8 @@ func (p *Planet) Low(t Time, geo *Place, precision time.Duration, refr RefractTy
 	found := false
 	for i := 0; i < 48; i++ {
 		t3.Time = t2.Add(30 * time.Minute)
-		alt3 := p.Topo(t3, geo, refr).Alt
-		if alt3 > alt2 && alt2 < alt1 {
+		alt3 = p.Topo(t3, geo, refr).Alt
+		if i > 1 && alt2 < alt3 && alt2 < alt1 {
 			found = true
 			break
 		}
