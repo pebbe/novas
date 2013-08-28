@@ -1,7 +1,7 @@
 package novas
 
 /*
-#include "novas.h"
+#include "NOVAS_novas.h"
 */
 import "C"
 

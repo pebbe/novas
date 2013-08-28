@@ -11,7 +11,7 @@
 */
 
 #ifndef _NOVAS_
-   #include "novas.h"
+   #include "NOVAS_novas.h"
 #endif
 
 /********iau2000a */

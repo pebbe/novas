@@ -11,7 +11,7 @@
 */
 
 #ifndef _CONSTS_
-   #include "novascon.h"
+   #include "NOVAS_novascon.h"
 #endif
 
 /*

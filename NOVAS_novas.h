@@ -34,15 +34,15 @@
    #endif
 
    #ifndef _CONSTS_
-      #include "novascon.h"
+      #include "NOVAS_novascon.h"
    #endif
 
    #ifndef _SOLSYS_
-      #include "solarsystem.h"
+      #include "NOVAS_solarsystem.h"
    #endif
 
    #ifndef _NUTATION_
-      #include "nutation.h"
+      #include "NOVAS_nutation.h"
    #endif
 
 

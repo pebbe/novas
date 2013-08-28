@@ -11,7 +11,7 @@
 */
 
 #ifndef _EPHMAN_
-   #include "eph_manager.h"
+   #include "NOVAS_eph_manager.h"
 #endif
 
 /*
