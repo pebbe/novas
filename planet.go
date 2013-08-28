@@ -79,7 +79,7 @@ func Moon() *Body {
 
 func new_planet(id int, name string) *Body {
 
-	planet := &Body{class: PLANET}
+	planet := &Body{class: clPLANET, name: name}
 
 	cs1 := C.CString("DUMMY")
 	cs2 := C.CString("xxx")
@@ -92,6 +92,5 @@ func new_planet(id int, name string) *Body {
 	if err := C.make_object(0, C.short(id), cs3, &planet.cat_entry, &planet.object); err != 0 {
 		log.Fatalf("Error %d from make_object (%s)\n", int(err), name)
 	}
-	planet.name = name
 	return planet
 }

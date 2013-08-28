@@ -10,18 +10,18 @@ import (
 	"math"
 )
 
-type BodyClass int
+type bodyClass int
 
 const (
-	STAR    = BodyClass(iota)
-	PLANET
+	clSTAR = bodyClass(iota)
+	clPLANET
 )
 
 type Body struct {
-	class    BodyClass
-	object     C.object
+	class     bodyClass
+	object    C.object
 	cat_entry C.cat_entry
-	name       string
+	name      string
 }
 
 // Information returned by function (*Body) App(Time)
@@ -62,20 +62,20 @@ func (p *Body) App(t Time) BodyData {
 	data := BodyData{}
 
 	var ra, dec, dis C.double
-	switch (p.class) {
-	case PLANET:
+	switch p.class {
+	case clPLANET:
 		if err := C.app_planet(C.double(t.jd_tt), &p.object, C.short(Accuracy), &ra, &dec, &dis); err != 0 {
 			log.Fatalf("Error %d from app_planet (%s)\n", int(err), p.name)
 		}
-	case STAR:
-		if err := C.app_star (C.double(t.jd_tt), &p.cat_entry, C.short(Accuracy), &ra, &dec); err != 0 {
+		data.Dis = float64(dis)
+	case clSTAR:
+		if err := C.app_star(C.double(t.jd_tt), &p.cat_entry, C.short(Accuracy), &ra, &dec); err != 0 {
 			log.Fatalf("Error %d from app_star (%s)\n", int(err), p.name)
 		}
 		data.Dis = math.NaN()
 	}
 	data.RA = float64(ra)
 	data.Dec = float64(dec)
-	data.Dis = float64(dis)
 
 	var elon, elat C.double
 	C.equ2ecl(C.double(t.jd_tt), 0, C.short(Accuracy), ra, dec, &elon, &elat)
@@ -94,19 +94,18 @@ func (p *Body) Topo(t Time, geo *Place, refr RefractType) BodyTopoData {
 
 	var ra, dec, dis C.double
 
-	switch (p.class) {
-	case PLANET:
+	switch p.class {
+	case clPLANET:
 		if err := C.topo_planet(C.double(t.jd_tt), &p.object, C.double(t.delta_t), &geo.place, C.short(Accuracy), &ra, &dec, &dis); err != 0 {
 			log.Fatalf("Error %d from app_planet (%s)\n", int(err), p.name)
 		}
-	case STAR:
+		data.Dis = float64(dis)
+	case clSTAR:
 		if err := C.topo_star(C.double(t.jd_tt), C.double(t.delta_t), &p.cat_entry, &geo.place, C.short(Accuracy), &ra, &dec); err != 0 {
 			log.Fatalf("Error %d from app_planet (%s)\n", int(err), p.name)
 		}
 		data.Dis = math.NaN()
 	}
-
-	data.Dis = float64(dis)
 
 	var elon, elat C.double
 	C.equ2ecl(C.double(t.jd_tt), 0, C.short(Accuracy), ra, dec, &elon, &elat)
