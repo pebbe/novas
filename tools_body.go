@@ -5,9 +5,9 @@ import (
 	"time"
 )
 
-// Compute the time of rise of a solar system body above the dip angle.
+// Compute the time of rise of a body above the dip angle.
 // Returns an error if the body doesn't rise above dip within 24 hours from the time given.
-func (p *Planet) Rise(t Time, geo *Place, dip float64, precision time.Duration, refr RefractType) (Time, PlanetTopoData, error) {
+func (p *Body) Rise(t Time, geo *Place, dip float64, precision time.Duration, refr RefractType) (Time, BodyTopoData, error) {
 
 	alt1 := p.Topo(t, geo, refr).Alt
 	t1 := t
@@ -24,10 +24,10 @@ func (p *Planet) Rise(t Time, geo *Place, dip float64, precision time.Duration, 
 		alt1 = alt2
 	}
 	if !found {
-		return Time{}, PlanetTopoData{}, errors.New("No rise above dip in the next 24 hours")
+		return Time{}, BodyTopoData{}, errors.New("No rise above dip in the next 24 hours")
 	}
 
-	var topo PlanetTopoData
+	var topo BodyTopoData
 	tt := t1
 	for t2.Sub(t1.Time) > precision {
 		tt.Time = t1.Add(t2.Sub(t1.Time) / 2)
@@ -41,9 +41,9 @@ func (p *Planet) Rise(t Time, geo *Place, dip float64, precision time.Duration, 
 	return tt, topo, nil
 }
 
-// Compute the time of set of a solar system body below the dip angle.
+// Compute the time of set of a body below the dip angle.
 // Returns an error if the body doesn't set below dip within 24 hours from the time given.
-func (p *Planet) Set(t Time, geo *Place, dip float64, precision time.Duration, refr RefractType) (Time, PlanetTopoData, error) {
+func (p *Body) Set(t Time, geo *Place, dip float64, precision time.Duration, refr RefractType) (Time, BodyTopoData, error) {
 
 	alt1 := p.Topo(t, geo, refr).Alt
 	t1 := t
@@ -60,10 +60,10 @@ func (p *Planet) Set(t Time, geo *Place, dip float64, precision time.Duration, r
 		alt1 = alt2
 	}
 	if !found {
-		return Time{}, PlanetTopoData{}, errors.New("No set below dip in the next 24 hours")
+		return Time{}, BodyTopoData{}, errors.New("No set below dip in the next 24 hours")
 	}
 
-	var topo PlanetTopoData
+	var topo BodyTopoData
 	tt := t1
 	for t2.Sub(t1.Time) > precision {
 		tt.Time = t1.Add(t2.Sub(t1.Time) / 2)
@@ -77,9 +77,9 @@ func (p *Planet) Set(t Time, geo *Place, dip float64, precision time.Duration, r
 	return tt, topo, nil
 }
 
-// Compute the time of highest position in the sky of a solar system body.
+// Compute the time of highest position in the sky of a body.
 // Returns an error if the body doesn't goes up then down within 24 hours from the time given.
-func (p *Planet) High(t Time, geo *Place, precision time.Duration, refr RefractType) (Time, PlanetTopoData, error) {
+func (p *Body) High(t Time, geo *Place, precision time.Duration, refr RefractType) (Time, BodyTopoData, error) {
 
 	alt1 := p.Topo(t, geo, refr).Alt
 	alt2 := alt1
@@ -100,10 +100,10 @@ func (p *Planet) High(t Time, geo *Place, precision time.Duration, refr RefractT
 	}
 
 	if !found {
-		return Time{}, PlanetTopoData{}, errors.New("No high point in the next 24 hours")
+		return Time{}, BodyTopoData{}, errors.New("No high point in the next 24 hours")
 	}
 
-	var topo PlanetTopoData
+	var topo BodyTopoData
 	tt := t1
 	for t3.Sub(t1.Time) > precision {
 		tt.Time = t1.Add(t3.Sub(t1.Time) / 2)
@@ -119,9 +119,9 @@ func (p *Planet) High(t Time, geo *Place, precision time.Duration, refr RefractT
 	return tt, topo, nil
 }
 
-// Compute the time of lowest position in the sky of a solar system body.
+// Compute the time of lowest position in the sky of a body.
 // Returns an error if the body doesn't goes down then up within 24 hours from the time given.
-func (p *Planet) Low(t Time, geo *Place, precision time.Duration, refr RefractType) (Time, PlanetTopoData, error) {
+func (p *Body) Low(t Time, geo *Place, precision time.Duration, refr RefractType) (Time, BodyTopoData, error) {
 
 	alt1 := p.Topo(t, geo, refr).Alt
 	alt2 := alt1
@@ -142,10 +142,10 @@ func (p *Planet) Low(t Time, geo *Place, precision time.Duration, refr RefractTy
 	}
 
 	if !found {
-		return Time{}, PlanetTopoData{}, errors.New("No low point in the next 24 hours")
+		return Time{}, BodyTopoData{}, errors.New("No low point in the next 24 hours")
 	}
 
-	var topo PlanetTopoData
+	var topo BodyTopoData
 	tt := t1
 	for t3.Sub(t1.Time) > precision {
 		tt.Time = t1.Add(t3.Sub(t1.Time) / 2)

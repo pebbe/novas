@@ -21,7 +21,7 @@ func main() {
 	fmt.Println("\nLocation:", geo)
 
 	fmt.Println("\n            Distance   Altitude   Azimuth")
-	for _, obj := range []*novas.Planet{
+	for _, obj := range []*novas.Body{
 		novas.Mercury(),
 		novas.Venus(),
 		novas.Mars(),
