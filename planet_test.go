@@ -37,3 +37,22 @@ func ExampleTopo_Planet() {
 	// Altitude:        13.278250
 	// Azimuth:        187.524224
 }
+
+func ExampleDisc() {
+	t := novas.Date(2012, 4, 1, 0, 0, 0, 0, time.UTC)
+	for _, i := range []*novas.Body{
+		novas.Moon(),
+		novas.Mercury(),
+		novas.Venus(),
+		novas.Mars(),
+		novas.Jupiter(),
+	} {
+		fmt.Printf("%-8s%3.0f\n", i.Name(), i.Disc(t))
+	}
+	// Output:
+	// Moon     62
+	// Mercury  13
+	// Venus    48
+	// Mars     97
+	// Jupiter 100
+}
