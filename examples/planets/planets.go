@@ -20,7 +20,7 @@ func main() {
 	geo := novas.NewPlace(latitude, longitude, 0, 20, 1010)
 	fmt.Println("\nLocation:", geo)
 
-	fmt.Println("\n            Distance   Altitude   Azimuth")
+	fmt.Println("\n            Distance   Altitude   Azimuth   Disc")
 	for _, obj := range []*novas.Body{
 		novas.Mercury(),
 		novas.Venus(),
@@ -32,6 +32,6 @@ func main() {
 		novas.Pluto(),
 	} {
 		data := obj.Topo(now, geo, novas.REFR_NONE)
-		fmt.Printf("%-8s%12.6f%11.2f%10.2f\n", obj.Name(), data.Dis, data.Alt, data.Az)
+		fmt.Printf("%-8s%12.6f%11.2f%10.2f%7.0f\n", obj.Name(), data.Dis, data.Alt, data.Az, obj.Disc(now))
 	}
 }
