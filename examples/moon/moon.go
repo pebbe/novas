@@ -27,7 +27,7 @@ func main() {
 	fmt.Printf("Distance from surface location: %.0f km\n\n", data.Dis * novas.AU)
 	fmt.Printf("Altitude: %7.3f°\nAzimuth:  %7.3f°\n\n", data.Alt, data.Az)
 
-	fmt.Printf("Phase of the moon: %.2f°, illuminated: %.0f%%\n\n", novas.MoonPhase(now), novas.MoonDisc(now))
+	fmt.Printf("Phase of the moon: %.2f°, illuminated: %.0f%%\n\n", novas.MoonPhase(now), moon.Disc(now))
 
 	fmt.Println("Next new moon:      ", novas.MoonPhaseNext(now, 0, 30 * time.Second))
 	fmt.Println("Next first quarter: ", novas.MoonPhaseNext(now, 90, 30 * time.Second))
