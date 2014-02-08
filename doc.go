@@ -1,5 +1,5 @@
 /*
-Package novas provides an interface to the Naval Observatory Vector Astrometry Software (NOVAS).
+Package novas provides an interface to the Naval Observatory Vector Astrometry Software (NOVAS) [astronomy, astrometry, celestial mechanics, sun, moon, planets, stars].
 
 NOVAS homepage: http://aa.usno.navy.mil/software/novas/
 
