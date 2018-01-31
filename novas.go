@@ -33,7 +33,7 @@ func init() {
 		if err == 1 {
 			log.Fatalf("JPL ephemeris file \"%s\" not found. Download it from http://pkleiweg.home.xs4all.nl/jpleph/\n", filename)
 		} else {
-			log.Fatalf("Error reading JPL ephemeris file header \"%s\"\n", filename)
+			log.Fatalf("Error reading JPL ephemeris file header \"%s\", code %d\n", filename, err)
 		}
 	}
 	eph_data = EphData{DE_num: int(de_num), JD_beg: float64(jd_beg), JD_end: float64(jd_end)}

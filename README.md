@@ -20,3 +20,10 @@ http://pkleiweg.home.xs4all.nl/jpleph/
 Put the file in this directory:
 
     $GOPATH/src/github.com/pebbe/novas/jpleph/
+
+You can put the file in a different location. Then you need to provide
+the full path at run time in the environment variable `JPLEPH`, or you
+can set the full path at build time of the program that imports the
+package, like this:
+
+    go build -ldflags "-X github.com/pebbe/novas.JPLephFile=/opt/opt_local/novas/JPLEPH" program.go
