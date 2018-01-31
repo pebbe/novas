@@ -234,6 +234,7 @@ short int ephem_open (char *ephem_name,
             break;
          case 403: case 405:
          case 421:
+         case 430:  /* added by PKL */
             RECORD_LENGTH = 8144;
             break;
          case 404: case 406:

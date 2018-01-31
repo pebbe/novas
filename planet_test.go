@@ -14,10 +14,10 @@ func TestAppPlanet(t *testing.T) {
 	data := sun.App(nt)
 	tests := [][3]string{
 		{"Right ascension", "17.411478", fmt.Sprintf("%.6f", data.RA)},
-		{"Declination", "-23.187681", fmt.Sprintf("%.6f", data.Dec)},
+		{"Declination", "-23.187682", fmt.Sprintf("%.6f", data.Dec)},
 		{"Distance in AU", "0.984424", fmt.Sprintf("%.6f", data.Dis)},
 		{"Ecliptic longitude", "261.890295", fmt.Sprintf("%.6f", data.ELon)},
-		{"Ecliptic latitude", "0.001756", fmt.Sprintf("%.6f", data.ELat)},
+		{"Ecliptic latitude", "0.001755", fmt.Sprintf("%.6f", data.ELat)},
 	}
 	for _, test := range tests {
 		if test[1] != test[2] {
