@@ -52,7 +52,7 @@ func Julian(jd float64) Time {
 	C.cal_date(C.double(jd), &year, &month, &day, &hour)
 
 	f := float64(hour)
-	nano := int(f * 3600 * 1e9)
+	nano := int64(f * 3600 * 1e9)
 	h := nano / (3600 * 1e9)
 	nano %= 3600 * 1e9
 	m := nano / (60 * 1e9)
@@ -60,7 +60,7 @@ func Julian(jd float64) Time {
 	s := nano / 1e9
 	nano %= 1e9
 
-	return Time{Time: time.Date(int(year), time.Month(int(month)), int(day), h, m, s, nano, time.UTC)}
+	return Time{Time: time.Date(int(year), time.Month(int(month)), int(day), int(h), int(m), int(s), int(nano), time.UTC)}
 }
 
 func (t *Time) ToJulian() float64 {
