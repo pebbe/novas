@@ -3,7 +3,7 @@ Package novas provides an interface to the Naval Observatory Vector Astrometry S
 
 NOVAS homepage: http://aa.usno.navy.mil/software/novas/
 
-You need a planetary ephemeris file JPLEPH. You can download it here: http://pkleiweg.home.xs4all.nl/jpleph/
+You need a planetary ephemeris file JPLEPH. You can download it here: https://bisse.nl/jpleph/
 
 Put it in this directory:
 
