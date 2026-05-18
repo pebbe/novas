@@ -31,7 +31,7 @@ func init() {
 	var de_num C.short
 	if err := C.ephem_open(cs, &jd_beg, &jd_end, &de_num); err != 0 {
 		if err == 1 {
-			log.Fatalf("JPL ephemeris file \"%s\" not found. Download it from http://pkleiweg.home.xs4all.nl/jpleph/\n", filename)
+			log.Fatalf("JPL ephemeris file \"%s\" not found. Download it from https://bisse.nl/jpleph/\n", filename)
 		} else {
 			log.Fatalf("Error reading JPL ephemeris file header \"%s\", code %d\n", filename, err)
 		}
